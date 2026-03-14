@@ -1,4 +1,25 @@
 body {
+  background: #f9f9f9;
+}
+.content {
+  background: #fff;
+  border-radius: 12px;
+  -webkit-box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  padding: 20px;
+}
+.article-title {
+  font-size: 26px;
+  font-weight: 600;
+}
+#main-nav {
+  text-align: center;
+}
+#main-nav #menu {
+  display: inline-block;
+  float: none;
+}
+body {
   width: 100%;
 }
 body:before,

@@ -1222,7 +1222,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #4f0fbd;
+    background: #4e1328;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -2692,4 +2692,45 @@ header.header {
   .comments {
     padding: 10px 12px;
   }
+}
+/* 温柔清新渐变主题 */
+:root {
+  --theme-color: #8b5cf6;
+  --theme-gradient: linear-gradient(135deg, #a78bfa 0%, #60a5fa 100%);
+}
+/* 顶部导航渐变 */
+.header {
+  background: var(--theme-gradient) !important;
+  box-shadow: none !important;
+}
+/* 链接颜色 */
+a,
+.post-title-link {
+  color: #8b5cf6 !important;
+}
+a:hover {
+  color: #60a5fa !important;
+}
+/* 按钮渐变 */
+.btn,
+.back2top {
+  background: var(--theme-gradient) !important;
+  border: none !important;
+}
+/* 卡片圆角 + 柔和阴影 */
+.post-block,
+.card {
+  border-radius: 20px !important;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08) !important;
+  border: none !important;
+}
+/* 鼠标悬浮上浮效果 */
+.post-block:hover {
+  transform: translateY(-6px);
+  transition: all 0.3s ease;
+}
+/* 整体文字更柔和 */
+body {
+  background: #f8fafc !important;
+  color: #334155 !important;
 }

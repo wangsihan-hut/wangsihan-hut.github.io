@@ -184,47 +184,38 @@ document.addEventListener("click",function(e){
 <script>
 !function(){let e,t,o=0,n=!1,a=[],r=25,i=1,s=1e3,l=1;function c(){e=document.createElement("div"),e.style.cssText="position:fixed;top:0;left:0;height:0;width:0;pointer-events:none;z-index:9999999",document.body.appendChild(e);for(let i=0;i<r;i++){let t=document.createElement("div");t.style.cssText=`position:absolute;width:${l}px;height:${l}px;background:#FFC0CB;border-radius:50%;transition:transform ${s}ms linear`,t.style.opacity="0",t.x=0,t.y=0,e.appendChild(t),a.push(t)}document.addEventListener("mousemove",p)}function p(t){o||c(),o=1,n=!0,window.mx=t.clientX,window.my=t.clientY}function d(){if(!o)return void requestAnimationFrame(d);n?a.forEach((t,o)=>{let n=o?o-1:r-1,a=a[n],i=(a.x-t.x)/10,s=(a.y-t.y)/10;Math.abs(i)<.1&&(i=0),Math.abs(s)<.1&&(s=0),t.x=t.x+i,t.y=t.y+s,t.style.transform=`translate(${t.x}px,${t.y}px)scale(${o/r})`,t.style.opacity=o/r,t.style.left=t.x+"px",t.style.top=t.y+"px"}):a.forEach((t)=>{t.x=window.innerWidth/2,t.y=window.innerHeight/2,t.style.transform=`translate(${t.x}px,${t.y}px)scale(0)`,t.style.opacity=0}),n=!1,requestAnimationFrame(d)}d(),window.mx=window.innerWidth/2,window.my=window.innerHeight/2}();
 </script>
-<!-- 🍤 虾滑专属 · 强制逐字打字机（顺序固定，不随机） -->
+<!-- 🍤 强制打字机 → 绝对不随机 -->
 <script>
-// 等待页面完全加载后执行
-window.addEventListener('load', function() {
-  // 优化选择器，适配Fluid主题的DOM结构
-  const subtitleEl = document.querySelector('#banner .subtitle') || document.querySelector('.subtitle');
-  if (!subtitleEl) return;
+setTimeout(() => {
+  const sub = document.querySelector(".subtitle");
+  if (!sub) return;
 
-  // 你的三行固定文案
-  const texts = [
-    '欢迎来到虾滑的小窝🍤',
-    '记录生活与热爱',
-    '代码与日常的小天地'
+  const lines = [
+    "欢迎来到虾滑的小窝🍤",
+    "记录生活与热爱",
+    "代码与日常的小天地"
   ];
 
-  let currentLine = 0;
-  let currentChar = 0;
-  const typingSpeed = 90; // 打字速度（毫秒，越小越快）
-  const lineDelay = 600;  // 打完一行后停顿时间（毫秒）
+  let i = 0;
+  let char = 0;
+  sub.innerText = "";
 
-  // 打字机效果
-  function typeLine() {
-    if (currentChar < texts[currentLine].length) {
-      subtitleEl.textContent += texts[currentLine][currentChar];
-      currentChar++;
-      setTimeout(typeLine, typingSpeed);
+  function type() {
+    if (char < lines[i].length) {
+      sub.innerText += lines[i][char];
+      char++;
+      setTimeout(type, 100);
     } else {
-      // 打完一行，停顿后清空，打下一行
       setTimeout(() => {
-        subtitleEl.textContent = '';
-        currentChar = 0;
-        currentLine = (currentLine + 1) % texts.length;
-        typeLine();
-      }, lineDelay);
+        sub.innerText = "";
+        char = 0;
+        i = (i + 1) % lines.length;
+        type();
+      }, 700);
     }
   }
-
-  // 强制清空默认文字，启动动画
-  subtitleEl.textContent = '';
-  typeLine();
-});
+  type();
+}, 300);
 </script>
 <meta name="generator" content="Hexo 8.1.1"></head>
 
@@ -524,7 +515,7 @@ window.addEventListener('load', function() {
                 
                 <p>今天花了一整天时间，把我的 Hexo 博客从配置、改名到部署全部理顺了。<br>踩了无数坑，也终于找到了最稳定、最不折腾的部署方式，记录一下，给自己留个备忘，也帮同样是新手的朋友避坑。</p>
 <h2 id="一、今天遇到的问题"><a href="#一、今天遇到的问题" class="headerlink" title="一、今天遇到的问题"></a>一、今天遇到的问题</h2><ol>
-<li><p>SSH 权限报错<br><a href="mailto:&#x67;&#105;&#116;&#64;&#103;&#x69;&#x74;&#104;&#x75;&#98;&#46;&#99;&#111;&#x6d;">git@github.com</a>: Permission denied (publickey)<br>公钥配置了，但 ssh-agent 启动失败，ssh-add 一直报错。</p>
+<li><p>SSH 权限报错<br><a href="mailto:&#x67;&#105;&#x74;&#64;&#103;&#x69;&#116;&#104;&#x75;&#98;&#46;&#99;&#x6f;&#x6d;">git@github.com</a>: Permission denied (publickey)<br>公钥配置了，但 ssh-agent 启动失败，ssh-add 一直报错。</p>
 </li>
 <li><p>HTTPS 部署网络不稳定<br>Recv failure: Connection was reset<br>国内网络访问 GitHub 经常抽风，部署一半就断。</p>
 </li>

@@ -391,7 +391,7 @@ document.addEventListener("click",function(e){
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="An elegant Material-Design theme for Hexo"></span>
+            <span id="subtitle" data-typed-text="欢迎来到虾滑的小窝🍤,记录生活与热爱,代码与日常的小天地"></span>
           
         </div>
 
@@ -959,7 +959,9 @@ document.addEventListener("click",function(e){
       }
       var text = subtitle.getAttribute('data-typed-text');
       
-        typing(text);
+        var texts = ["欢迎来到虾滑的小窝🍤","记录生活与热爱","代码与日常的小天地"];
+        var idx = Math.floor(Math.random() * texts.length);
+        typing(texts[idx]);
       
     })(window, document);
   </script>

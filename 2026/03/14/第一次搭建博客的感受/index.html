@@ -3,38 +3,46 @@
 <!DOCTYPE html>
 <html lang="zh-CN" data-default-color-scheme=auto>
 
-<!-- 页面加载动画 -->
+<!-- 🍤 虾滑专属加载动画 -->
 <style>
-#loading{
-  position:fixed;
-  top:0;
-  left:0;
-  right:0;
-  bottom:0;
-  background:#fff;
-  z-index:99999;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+#loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  z-index: 9999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease;
 }
-.spinner{
-  width:40px;
-  height:40px;
-  border:4px solid #eee;
-  border-top-color:#777;
-  border-radius:50%;
-  animation:spin 0.8s infinite linear;
+#loading::before {
+  content: "🍤";
+  font-size: 46px;
+  animation: shrimpJump 1.1s infinite ease-in-out;
 }
-@keyframes spin{
-  to{transform:rotate(360deg)}
+@keyframes shrimpJump {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-25px) scale(1.1); }
+}
+#loading.hidden {
+  opacity: 0;
+  visibility: hidden;
 }
 </style>
-<div id="loading"><div class="spinner"></div></div>
+
+<div id="loading"></div>
+
 <script>
-window.addEventListener('load',function(){
-  document.getElementById('loading').style.display='none'
-})
+window.addEventListener('load', function () {
+  setTimeout(() => {
+    document.getElementById('loading').classList.add('hidden');
+  }, 500);
+});
 </script>
+
 
 
 <head>
@@ -119,6 +127,63 @@ window.addEventListener('load',function(){
 
 
   
+  
+
+<!-- ========================================== -->
+<!-- 🍤 虾滑专属 - 自定义鼠标样式 -->
+<!-- ========================================== -->
+<style>
+/* 普通鼠标：虾滑图标 */
+body {
+  cursor: url("https://cdn.jsdelivr.net/gh/yourimg/shrimp.png"), default !important;
+}
+/* 链接鼠标：虾滑手指图标 */
+a, button, img, label {
+  cursor: url("https://cdn.jsdelivr.net/gh/yourimg/shrimp-link.png"), pointer !important;
+}
+</style>
+
+<!-- 🍤 虾滑全套美化：鼠标+点击+拖尾 全部生效版 -->
+<style>
+/* 全局虾滑鼠标（有效链接） */
+body {
+  cursor: url("https://cdn.jsdelivr.net/npm/akilar-css@latest/cursor/normal.cur"), default !important;
+}
+a,button,img,link:hover {
+  cursor: url("https://cdn.jsdelivr.net/npm/akilar-css@latest/cursor/link.cur"), pointer !important;
+}
+
+/* 点击虾滑动画 */
+@keyframes shrimpUp {
+  0%{transform:translateY(0);opacity:1}
+  100%{transform:translateY(-60px);opacity:0}
+}
+.shrimp-float {
+  position:fixed;
+  z-index:9999;
+  pointer-events:none;
+  animation:shrimpUp 1s forwards;
+  font-size:22px;
+}
+</style>
+
+<!-- 点击弹出虾滑 🍤 -->
+<script>
+document.addEventListener("click",function(e){
+  let el=document.createElement("div");
+  el.innerHTML="🍤";
+  el.className="shrimp-float";
+  el.style.left=e.clientX-10+"px";
+  el.style.top=e.clientY-10+"px";
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),1000);
+});
+</script>
+
+<!-- 鼠标拖尾（粉色） -->
+<script>
+!function(){let e,t,o=0,n=!1,a=[],r=25,i=1,s=1e3,l=1;function c(){e=document.createElement("div"),e.style.cssText="position:fixed;top:0;left:0;height:0;width:0;pointer-events:none;z-index:9999999",document.body.appendChild(e);for(let i=0;i<r;i++){let t=document.createElement("div");t.style.cssText=`position:absolute;width:${l}px;height:${l}px;background:#FFC0CB;border-radius:50%;transition:transform ${s}ms linear`,t.style.opacity="0",t.x=0,t.y=0,e.appendChild(t),a.push(t)}document.addEventListener("mousemove",p)}function p(t){o||c(),o=1,n=!0,window.mx=t.clientX,window.my=t.clientY}function d(){if(!o)return void requestAnimationFrame(d);n?a.forEach((t,o)=>{let n=o?o-1:r-1,a=a[n],i=(a.x-t.x)/10,s=(a.y-t.y)/10;Math.abs(i)<.1&&(i=0),Math.abs(s)<.1&&(s=0),t.x=t.x+i,t.y=t.y+s,t.style.transform=`translate(${t.x}px,${t.y}px)scale(${o/r})`,t.style.opacity=o/r,t.style.left=t.x+"px",t.style.top=t.y+"px"}):a.forEach((t)=>{t.x=window.innerWidth/2,t.y=window.innerHeight/2,t.style.transform=`translate(${t.x}px,${t.y}px)scale(0)`,t.style.opacity=0}),n=!1,requestAnimationFrame(d)}d(),window.mx=window.innerWidth/2,window.my=window.innerHeight/2}();
+</script>
 <meta name="generator" content="Hexo 8.1.1"></head>
 
 

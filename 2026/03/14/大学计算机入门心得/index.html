@@ -184,12 +184,22 @@ document.addEventListener("click",function(e){
 <script>
 !function(){let e,t,o=0,n=!1,a=[],r=25,i=1,s=1e3,l=1;function c(){e=document.createElement("div"),e.style.cssText="position:fixed;top:0;left:0;height:0;width:0;pointer-events:none;z-index:9999999",document.body.appendChild(e);for(let i=0;i<r;i++){let t=document.createElement("div");t.style.cssText=`position:absolute;width:${l}px;height:${l}px;background:#FFC0CB;border-radius:50%;transition:transform ${s}ms linear`,t.style.opacity="0",t.x=0,t.y=0,e.appendChild(t),a.push(t)}document.addEventListener("mousemove",p)}function p(t){o||c(),o=1,n=!0,window.mx=t.clientX,window.my=t.clientY}function d(){if(!o)return void requestAnimationFrame(d);n?a.forEach((t,o)=>{let n=o?o-1:r-1,a=a[n],i=(a.x-t.x)/10,s=(a.y-t.y)/10;Math.abs(i)<.1&&(i=0),Math.abs(s)<.1&&(s=0),t.x=t.x+i,t.y=t.y+s,t.style.transform=`translate(${t.x}px,${t.y}px)scale(${o/r})`,t.style.opacity=o/r,t.style.left=t.x+"px",t.style.top=t.y+"px"}):a.forEach((t)=>{t.x=window.innerWidth/2,t.y=window.innerHeight/2,t.style.transform=`translate(${t.x}px,${t.y}px)scale(0)`,t.style.opacity=0}),n=!1,requestAnimationFrame(d)}d(),window.mx=window.innerWidth/2,window.my=window.innerHeight/2}();
 </script>
-<!-- 🍤 强制打字机 → 绝对不随机 -->
+<!-- 🍤 虾滑专属 · 修复版打字机（100%命中元素） -->
 <script>
-setTimeout(() => {
+// 用 MutationObserver 监听 DOM 变化，确保元素出现后再执行
+const observer = new MutationObserver(() => {
   const sub = document.querySelector(".subtitle");
-  if (!sub) return;
+  if (sub) {
+    observer.disconnect(); // 找到元素后停止监听
+    startTypewriter(sub);
+  }
+});
 
+// 监听整个文档的 DOM 变化
+observer.observe(document.body, { childList: true, subtree: true });
+
+// 打字机逻辑
+function startTypewriter(sub) {
   const lines = [
     "欢迎来到虾滑的小窝🍤",
     "记录生活与热爱",
@@ -215,7 +225,7 @@ setTimeout(() => {
     }
   }
   type();
-}, 300);
+}
 </script>
 <meta name="generator" content="Hexo 8.1.1"></head>
 

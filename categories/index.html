@@ -173,6 +173,41 @@ document.addEventListener("click",function(e){
 <script>
 !function(){let e,t,o=0,n=!1,a=[],r=25,i=1,s=1e3,l=1;function c(){e=document.createElement("div"),e.style.cssText="position:fixed;top:0;left:0;height:0;width:0;pointer-events:none;z-index:9999999",document.body.appendChild(e);for(let i=0;i<r;i++){let t=document.createElement("div");t.style.cssText=`position:absolute;width:${l}px;height:${l}px;background:#FFC0CB;border-radius:50%;transition:transform ${s}ms linear`,t.style.opacity="0",t.x=0,t.y=0,e.appendChild(t),a.push(t)}document.addEventListener("mousemove",p)}function p(t){o||c(),o=1,n=!0,window.mx=t.clientX,window.my=t.clientY}function d(){if(!o)return void requestAnimationFrame(d);n?a.forEach((t,o)=>{let n=o?o-1:r-1,a=a[n],i=(a.x-t.x)/10,s=(a.y-t.y)/10;Math.abs(i)<.1&&(i=0),Math.abs(s)<.1&&(s=0),t.x=t.x+i,t.y=t.y+s,t.style.transform=`translate(${t.x}px,${t.y}px)scale(${o/r})`,t.style.opacity=o/r,t.style.left=t.x+"px",t.style.top=t.y+"px"}):a.forEach((t)=>{t.x=window.innerWidth/2,t.y=window.innerHeight/2,t.style.transform=`translate(${t.x}px,${t.y}px)scale(0)`,t.style.opacity=0}),n=!1,requestAnimationFrame(d)}d(),window.mx=window.innerWidth/2,window.my=window.innerHeight/2}();
 </script>
+<!-- 🍤 逐字打字机（连续播放 不删除） -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  let subtitle = document.querySelector('.subtitle')
+  if (!subtitle) return
+
+  const texts = [
+    "欢迎来到虾滑的小窝🍤",
+    "记录生活与热爱",
+    "代码与日常的小天地"
+  ]
+
+  let textIndex = 0
+  let charIndex = 0
+  const speed = 80
+
+  function type() {
+    if (charIndex < texts[textIndex].length) {
+      subtitle.innerHTML += texts[textIndex][charIndex]
+      charIndex++
+      setTimeout(type, speed)
+    } else {
+      setTimeout(() => {
+        subtitle.innerHTML = ""
+        charIndex = 0
+        textIndex = (textIndex + 1) % texts.length
+        type()
+      }, 500)
+    }
+  }
+
+  subtitle.innerHTML = ""
+  type()
+})
+</script>
 <meta name="generator" content="Hexo 8.1.1"></head>
 
 
@@ -609,48 +644,6 @@ document.addEventListener("click",function(e){
     
     <div class="category row nomargin-x">
       <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="校园日常"
-        id="heading-4fcc86411b3d7fd3a741b6ea351fa4fd" role="tab" data-toggle="collapse" href="#collapse-4fcc86411b3d7fd3a741b6ea351fa4fd"
-        aria-expanded="false"
-      >
-        校园日常
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/%E6%A0%A1%E5%9B%AD%E6%97%A5%E5%B8%B8/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>1</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-4fcc86411b3d7fd3a741b6ea351fa4fd"
-           role="tabpanel" aria-labelledby="heading-4fcc86411b3d7fd3a741b6ea351fa4fd">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2026/03/14/%E6%A0%A1%E5%9B%AD%E7%94%9F%E6%B4%BB%E5%B0%8F%E8%AE%B0/" title="校园生活小记"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">校园生活小记</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
           list-group-item category-item-action col-10 col-md-11 col-xm-11" title="成长感悟"
         id="heading-b57293b4e405dba27e57a5f9d23294c8" role="tab" data-toggle="collapse" href="#collapse-b57293b4e405dba27e57a5f9d23294c8"
         aria-expanded="false"
@@ -679,6 +672,48 @@ document.addEventListener("click",function(e){
            class="list-group-item list-group-item-action
            ">
           <span class="category-post">第一次搭建博客的感受</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="校园日常"
+        id="heading-4fcc86411b3d7fd3a741b6ea351fa4fd" role="tab" data-toggle="collapse" href="#collapse-4fcc86411b3d7fd3a741b6ea351fa4fd"
+        aria-expanded="false"
+      >
+        校园日常
+        <span class="list-group-count"></span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+        <a href="/categories/%E6%A0%A1%E5%9B%AD%E6%97%A5%E5%B8%B8/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>1</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-4fcc86411b3d7fd3a741b6ea351fa4fd"
+           role="tabpanel" aria-labelledby="heading-4fcc86411b3d7fd3a741b6ea351fa4fd">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2026/03/14/%E6%A0%A1%E5%9B%AD%E7%94%9F%E6%B4%BB%E5%B0%8F%E8%AE%B0/" title="校园生活小记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">校园生活小记</span>
         </a>
       
     
